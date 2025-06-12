@@ -22,7 +22,7 @@ app.listen(PORT, () => {
 
 
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const uri = "mongodb+srv://vikrantaks007:1duIY7RgbdFHy0kO@cluster0.8wowedw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = "abc";
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
@@ -42,7 +42,7 @@ async function run() {
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
     const database = client.db('finly');
     const collection = database.collection('users');
-    
+
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
