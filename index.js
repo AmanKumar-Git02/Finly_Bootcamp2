@@ -1,9 +1,9 @@
 const express = require("express");
 const morgan = require('morgan');
 
-const {
-createUser,
-} = require('./controller/user.controller');
+// const {
+// createUser,
+// } = require('./lib/controller/user.controller');
 
 const app = express();
 
@@ -12,7 +12,8 @@ app.use(morgan('dev'));
 require('dotenv').config();
 require('./lib/dbConnect');
 
-app.post('/users', createUser);
+app.use('/users', require('./router/user.route'));
+// app.get('/users', createUser);
 
 // app.get('/', (req, res) => {
 //     res.send('Hello World!');
