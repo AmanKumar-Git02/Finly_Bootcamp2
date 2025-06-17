@@ -10,14 +10,19 @@ const app = express();
 app.use(morgan('dev'));
 
 require('dotenv').config();
+
+app.use(express.json());
+
 require('./lib/dbConnect');
 
-app.use('/users', require('./router/user.route'));
+const userRoutes = require('./router/user.route');
+app.use('/', userRoutes);
+// app.use('/users', require('./router/user.route'));
 // app.get('/users', createUser);
 
-// app.get('/', (req, res) => {
-//     res.send('Hello World!');
-// });
+app.get('/', (req, res) => {
+    res.send('Server is up and running');
+});
 
 // app.get('*', (req, res) => {
 //     res.status(404).send('Page not found');
@@ -25,9 +30,10 @@ app.use('/users', require('./router/user.route'));
 
 // const PORT = 3000;
 
-// app.listen(PORT, () => {
-//     console.log('Server is running on http://localhost:${PORT}');
-// });
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+});
 
 
 // const { MongoClient, ServerApiVersion } = require('mongodb');
