@@ -1,8 +1,23 @@
 const express = require('express');
 const router = express.Router();
 
-const {createUser} = require('../lib/controller/user.controller');
+const {createUser, getUser, deleteUser} = require('../lib/controller/user.controller');
 
-router.get('/create', createUser);
+router.post('/createusers', createUser);
+router.get('/getUser', getUser);
+router.get('/deleteUser', deleteUser);
+
+router.get('/', (req, res) => {
+res.send('user route is working');
+});
+
+router.get('/login', (req, res) => {
+res.send('login route is working');
+});
+
+router.post('/signup', (req, res) => {
+res.send('signup route is working');
+});
+
 
 module.exports = router;

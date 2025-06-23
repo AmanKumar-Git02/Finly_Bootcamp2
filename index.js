@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require('morgan');
+const session = require('express-session');
 
 // const {
 // createUser,
@@ -8,6 +9,13 @@ const morgan = require('morgan');
 const app = express();
 
 app.use(morgan('dev'));
+app.use(
+session({
+secret: process.env.AUTH_SECRET,
+saveUninitialized: true,
+resave: false,
+})
+);
 
 require('dotenv').config();
 
@@ -16,7 +24,12 @@ app.use(express.json());
 require('./lib/dbConnect');
 
 const userRoutes = require('./router/user.route');
-app.use('/', userRoutes);
+const getUser = require('./router/user.route');
+const deleteUser = require('./router/user.route');
+const signup = require('./router/user.route');
+app.use('/api', userRoutes);
+app.use('/api', getUser);
+app.use('/api', deleteUser);
 // app.use('/users', require('./router/user.route'));
 // app.get('/users', createUser);
 
