@@ -16,6 +16,7 @@ saveUninitialized: true,
 resave: false,
 })
 );
+app.use(flash());
 
 require('dotenv').config();
 
@@ -27,6 +28,7 @@ const userRoutes = require('./router/user.route');
 const getUser = require('./router/user.route');
 const deleteUser = require('./router/user.route');
 const signup = require('./router/user.route');
+const flash = require('connect-flash');
 app.use('/api', userRoutes);
 app.use('/api', getUser);
 app.use('/api', deleteUser);

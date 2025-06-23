@@ -15,7 +15,16 @@ router.get('/login', (req, res) => {
 res.send('login route is working');
 });
 
-router.post('/signup', (req, res) => {
+router.get('/signup', validateSignup, (req, res) => {
+  res.render('pages/signup', {
+    title: 'Sign up',
+    user: req.flash('data')[0],
+    info: req.flash('info')[0],
+    errors: req.flash('errors'),
+  });
+});
+
+router.post('/signup', validateSignup, (req, res) => {
 res.send('signup route is working');
 });
 
